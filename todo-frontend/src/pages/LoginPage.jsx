@@ -14,7 +14,7 @@ const LoginPage = ({ isAuthenticated, setIsAuthenticated, setUser }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       const response = await logIn(data);
-      setUser(response.data.user);
+      setUser(response.data);
       setIsAuthenticated(true);
       console.log(response);
     } catch (error) {

@@ -1,14 +1,35 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-//import { useEffect } from 'react';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+import { useEffect } from 'react';
 
-const CreateTask = () => {
-    const {register, handleSubmit, formState: {errors}} = useForm();
+const CreateTask = ({user , isAuthenticated, tasks, setTasks}) => {
+    const {register, handleSubmit, formState: {errors}, setValues} = useForm();
     const navigate = useNavigate();
     const params = useParams();
     const onSubmit = handleSubmit((data) => {
-      console.log(data);
+        console.log(data);
+        if(params.id){
+            editTask(params.id, data);
+        }else {
+            CreateTask({...data,
+            user: user._id,
+            dateStart: dayjs(data.dateStart).utc().format(),
+            dateEnd: dayjs(data.dateEnd).utc().format(),
+        })
+        }
     });
+
+    useEffect() => {
+        async function fetchTask() {
+            if (params.id){
+                const fetchedTask = await getTaskbyID(params.id);
+                setValues('title', fetchedTask.data.title);
+
+            }
+    }
+
     return (
       <>
         <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>

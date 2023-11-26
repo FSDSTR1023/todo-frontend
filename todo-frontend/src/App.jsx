@@ -7,11 +7,15 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import CreateTask from "./pages/CreateTask";
+import TaskPages from "./pages/TaskPages";
+
 
 
 function App () {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setisAuthenticated] = useState(false);
+  const [tasks, setTasks] = useState();
   return( 
   
     <Router>
@@ -19,6 +23,7 @@ function App () {
       <Navbar 
       user={user} 
       isAuthenticated={isAuthenticated} 
+      setIsAutenticated={setisAuthenticated} 
       />
 
       <Routes>
@@ -32,7 +37,33 @@ function App () {
         />
 
         <Route path="/login" 
-        element={<LoginPage />} 
+        element={
+        <LoginPage
+          isAuthenticated={isAuthenticated}
+          setisAuthenticated={setisAuthenticated}
+          setUser={setUser}          
+        />} 
+        />
+
+        <Route path="/add-task" 
+        element={
+        <CreateTask 
+          user={user} 
+          isAuthenticated={isAuthenticated} 
+          tasks={tasks} 
+          setTasks={setTasks} 
+           
+        />} 
+        />
+
+        <Route path="/task" 
+        element={
+        <TaskPages
+          user={user} 
+          isAuthenticated={isAuthenticated}
+          tasks={tasks} 
+          setTasks={setTasks}           
+        />} 
         />
 
       </Routes>

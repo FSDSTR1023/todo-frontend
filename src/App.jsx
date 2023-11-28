@@ -34,7 +34,7 @@ function App() {
       status: "TO DO"
     })
     console.log("editTask", editTask);
-  }
+  } 
 
   return (
     <>

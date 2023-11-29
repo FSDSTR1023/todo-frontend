@@ -1,21 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import TaskList from './components/TaskList';
+import NewTask from './components/NewTask';
+import AllTaskList from './components/TaskList';
 
 function App() {
   return (
-    <>
-    <header>
+    <Router>
       <div>
-        <Navbar />
-      </div>    
-    </header>
-    <main>
-      <h2>Hola</h2>
-      <TaskList />
-    </main>
-    
-    </>
+        <header>
+          <Navbar />
+        </header>
+        <main>
+          <Routes>
+            <Route path="/tasks" element={<AllTaskList />} />
+            <Route path="/newtask" element={<NewTask />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 

@@ -1,81 +1,99 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import usePostTask from '../hooks/usePostTask'; 
+import useEditTask from '../hooks/useEditTask';
 
-const TaskForm = ({ onTaskCreated }) => {
-    const [editTask, setEditTask] = useState({
+const TaskForm = ({ onTaskCreated, editTask }) => {
+    const [postTasks, setPostTask] = useState({
         title: "",
         description: "",
         status: "TO DO",
         datestart: new Date().toISOString().split('T')[0],
         dateend: new Date().toISOString().split('T')[0],
-        user: "", 
-        createdAt: new Date().toISOString(),
-        modifiedAt: new Date().toISOString(),
-        deletedAt: null
-      });
+        user: ""
+    });
 
-  const handleOnChange = (event) => {
-    const { name, value } = event.target;
-    setEditTask(prevTask => ({
-      ...prevTask,
-      [name]: value
-    }));
-  };
+    const { postTask } = usePostTask();
+    const { editTaskHandler } = useEditTask();
 
-  const postTask = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.post("http://localhost:3001/tasks", editTask);
-      onTaskCreated();
-    } catch (error) {
-      console.error("No se puede subir la tarea");
-    }
-  };
+    useEffect(() => {
+        if (editTask) {
+            setPostTask(editTask);
+        }
+    }, [editTask]);
 
+    const handleOnChange = (event) => {
+        const { name, value } = event.target;
+        setPostTask(prevTask => ({
+            ...prevTask,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (editTask) {
+            await editTaskHandler(postTasks);
+        } else {
+            await postTask(postTasks);
+        }
+        setPostTask({
+            title: "",
+            description: "",
+            status: "TO DO",
+            datestart: new Date().toISOString().split('T')[0],
+            dateend: new Date().toISOString().split('T')[0],
+            user: ""
+        });
+        if (onTaskCreated) {
+            onTaskCreated();
+        }
+    };
   return (
-    <form onSubmit={postTask}>
+    <form onSubmit={handleSubmit}>
     <input
       type="text"
       name="title"
-      value={editTask.title}
+      value={postTasks.title}
       onChange={handleOnChange}
       placeholder="Task Title"
+      required
     />
     <input
       type="text"
       name="description"
-      value={editTask.description}
+      value={postTasks.description}
       onChange={handleOnChange}
       placeholder="Task Description"
     />
     <input
       type="date"
       name="datestart"
-      value={editTask.datestart}
+      value={postTasks.datestart}
       onChange={handleOnChange}
+      required
     />
     <input
       type="date"
       name="dateend"
-      value={editTask.dateend}
+      value={postTasks.dateend}
       onChange={handleOnChange}
+      required
     />
-     <input
-      type="text"
+    <select
       name="status"
-      value={editTask.status}
+      value={postTasks.status}
       onChange={handleOnChange}
-      placeholder="User"
-    />
-    <input
-      type="text"
-      name="user"
-      value={editTask.user}
-      onChange={handleOnChange}
-      placeholder="User"
-    />
+      required
+    >
+      <option value="TO DO">TO DO</option>
+      <option value="IN PROGRESS">IN PROGRESS</option>
+      <option value="COMPLETED">COMPLETED</option>
+    </select>
+
+
     <button type="submit">Submit</button>
   </form>
+  
   );
 };
 

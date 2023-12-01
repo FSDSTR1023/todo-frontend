@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 const useTasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -9,7 +9,7 @@ const useTasks = () => {
       const response = await axios.get("http://localhost:3001/tasks");
       setTasks(response.data);
     } catch (error) {
-      console.error("Error fetching tasks");
+      console.error("Error fetching tasks", error);
     }
   };
 

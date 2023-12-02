@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import usePostTask from '../hooks/usePostTask'; 
-import useEditTask from '../hooks/useEditTask';
 
-const TaskForm = ({ onTaskCreated, editTask }) => {
+
+const TaskForm = ({ onTaskCreated }) => {
     const [postTasks, setPostTask] = useState({
         title: "",
         description: "",
@@ -13,13 +13,7 @@ const TaskForm = ({ onTaskCreated, editTask }) => {
     });
 
     const { postTask } = usePostTask();
-    const { editTaskHandler } = useEditTask();
 
-    useEffect(() => {
-        if (editTask) {
-            setPostTask(editTask);
-        }
-    }, [editTask]);
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
@@ -31,11 +25,7 @@ const TaskForm = ({ onTaskCreated, editTask }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (editTask) {
-            await editTaskHandler(postTasks);
-        } else {
-            await postTask(postTasks);
-        }
+        await postTask(postTasks);
         setPostTask({
             title: "",
             description: "",

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const useDeleteTask = () => {
   const deleteTask = async (taskId) => {
@@ -7,7 +7,10 @@ const useDeleteTask = () => {
       await axios.delete(`http://localhost:3001/tasks/${taskId}`);
     } catch (error) {
       // Log the detailed error message
-      console.error("Error deleting task:", error.response?.data || error.message || error);
+      console.error(
+        "Error deleting task:",
+        error.response?.data || error.message || error,
+      );
     }
   };
 

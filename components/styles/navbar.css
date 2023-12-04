@@ -1,0 +1,13 @@
+.navbar-content {
+    align-items: center;
+    display: flex;
+    padding: 20px 12px;
+    background: aquamarine;
+}
+
+.logo {
+    color: #414a5d;
+    font-size: 30px;
+    font-weight: 900;
+    padding-left: 10px;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
+import NavBar from "../components/NavBar";
 
 import useTasks from "../hooks/useTasks";
 import useDeleteTask from "../hooks/useDeleteTask";
@@ -21,17 +22,18 @@ function App() {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="main-container">
       <div className="main-form-container">
-        <h1>Form</h1>
       <TaskForm onTaskCreated={handleTaskCreated} />
       </div>
 
       <div className="main-task-container">
-      <h1>Tasks</h1>
       <TaskList taskList={tasks} onDelete={handleTaskDeleted} />
       </div>
     </div>
+    </>
   );
 }
 

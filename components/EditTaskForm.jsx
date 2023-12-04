@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useEditTask from "../hooks/useEditTask";
+import "./styles/edittaskform.css"
 
 const EditTaskForm = ({ task, onSave, onCancel }) => {
   const [editTaskData, setEditTaskData] = useState({
@@ -39,7 +40,7 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="edit-task-form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="title"
@@ -77,10 +78,11 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
           <option value="COMPLETED">COMPLETED</option>
         </select>
 
-        <button type="submit">Guardar Cambios</button>
+<span className="edit-form-buttons">       
+   <button type="submit">Guardar</button>
         <button type="button" onClick={onCancel}>
           Cancelar
-        </button>
+        </button></span>
       </form>
     </div>
   );

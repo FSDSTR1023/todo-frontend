@@ -39,6 +39,7 @@ const TaskForm = ({ onTaskCreated }) => {
   };
   return (
     <div className="form-container">
+    <h2>Create Task</h2>
     <form  className="form-main" onSubmit={handleSubmit}>
       <input
         type="text"

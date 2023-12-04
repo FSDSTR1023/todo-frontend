@@ -51,11 +51,28 @@ const getStatusClassName = (task) => {
   }
 };
 
+const [filterStatus, setFilterStatus] = useState("");
+
+const filteredTaskList = filterStatus
+  ? currentTaskList.filter((task) => task.status === filterStatus)
+  : currentTaskList;
 
 
   return (
+<>
+    <div className="filter-container">
+      <h2>Filter tasks by status</h2>
+      <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+        <option value="">All</option>
+        <option value="PENDING">Pending</option>
+        <option value="IN PROGRESS">In Progress</option>
+        <option value="COMPLETED">Completed</option>
+      </select>
+    </div>
+    
+    
     <div className="tasks-container">
-      {currentTaskList.map((task) => (
+      {filteredTaskList.map((task) => (
         <div
           key={task._id}
           className="task-card-container"
@@ -63,13 +80,12 @@ const getStatusClassName = (task) => {
           {editingTaskId === task._id ? (
             <>
               <div>
-                <p>Formulario de edición para {task.title}</p>
+                <p><b>Edit "{task.title}"</b></p>
                 <EditTaskForm
                   task={task}
                   onCancel={handleCancelEdit}
                   onSave={handleSaveEdit}
                 />
-                <button onClick={handleCancelEdit}>Cancelar</button>
               </div>
             </>
           ) : (
@@ -95,6 +111,7 @@ const getStatusClassName = (task) => {
         </div>
       ))}
     </div>
+</>
   );
 };
 

@@ -27,13 +27,12 @@
 
 .status-pending {
     text-align: center;
-    background: rgb(255, 236, 127);
+    background: aquamarine;
     border-radius: 10px;
     max-width: 219px;
     margin: 0 auto;
     font-weight: 300;
     margin-top: 17px;
-
     padding: 4px 0px;
 }
 

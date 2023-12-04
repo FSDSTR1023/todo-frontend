@@ -44,7 +44,7 @@ const TaskList = ({ taskList, userList, onDelete }) => {
 
 
 const getStatusClassName = (task) => {
-  if (task.status === "PENDING") {
+  if (task.status === "TO DO") {
     return "status-pending";
   } else if (task.status === "IN PROGRESS") {
     return "status-in-progress";
@@ -80,7 +80,7 @@ const filteredTaskList = filterStatus
       <h2>Filter tasks by status</h2>
       <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
         <option value="">All</option>
-        <option value="PENDING">Pending</option>
+        <option value="TO DO">Pending</option>
         <option value="IN PROGRESS">In Progress</option>
         <option value="COMPLETED">Completed</option>
       </select>

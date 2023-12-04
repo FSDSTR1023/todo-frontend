@@ -50,19 +50,20 @@ const TaskForm = ({ onTaskCreated, userList }) => {
     <h2>Create Task</h2>
     <form  className="form-main" onSubmit={handleSubmit}>
 
-    <select
-          name="user"
-          value={postTasks.user}
-          onChange={handleOnChange}
-          required
-        >
-         <option value="">Select a User</option>
-        {userList.map((user) => (
-          <option key={user._id} value={user._id}>
-            {user.firstname} {user.lastname}
-          </option>
-        ))}
-        </select>
+
+        <select
+  name="user"
+  value={postTasks.user}
+  onChange={handleOnChange}
+  required
+>
+  <option value="">No User Assigned</option>
+  {userList.map((user) => (
+    <option key={user._id} value={user._id}>
+      {user.firstname} {user.lastname}
+    </option>
+  ))}
+</select>
 
       <input
         type="text"

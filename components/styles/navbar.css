@@ -11,3 +11,9 @@
     font-weight: 900;
     padding-left: 10px;
 }
+
+@media screen and (max-width: 800px) {
+    .navbar-content{
+        width: 100%;
+    }
+}

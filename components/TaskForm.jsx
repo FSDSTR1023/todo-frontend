@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import usePostTask from "../hooks/usePostTask";
+import "./styles/taskform.css"
 
 const TaskForm = ({ onTaskCreated }) => {
   const [postTasks, setPostTask] = useState({
@@ -37,7 +38,8 @@ const TaskForm = ({ onTaskCreated }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="form-container">
+    <form  className="form-main" onSubmit={handleSubmit}>
       <input
         type="text"
         name="title"
@@ -78,8 +80,9 @@ const TaskForm = ({ onTaskCreated }) => {
         <option value="COMPLETED">COMPLETED</option>
       </select>
 
-      <button type="submit">Submit</button>
+      <button className="form-button" type="submit">Submit</button>
     </form>
+    </div>
   );
 };
 

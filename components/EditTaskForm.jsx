@@ -38,7 +38,7 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -82,7 +82,7 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
           Cancelar
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

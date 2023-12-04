@@ -1,0 +1,28 @@
+.form-container{
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: 1px 3px 8px #d7d5d5;
+}
+.form-main{
+    display: flex;
+    flex-direction: column;
+}
+.form-main input {
+    margin: 10px 5px 5px;
+    border: 1px solid #026644;
+    border-radius: 4px;
+    padding: 7px;
+    font-family: 'Inter';
+}
+
+.form-main select{
+    margin: 10px 5px 5px;
+    border: 1px solid #026644;
+    border-radius: 4px;
+    padding: 7px;
+}
+.form-button{
+    background: aquamarine;
+    margin: 11px 4px 5px;
+}

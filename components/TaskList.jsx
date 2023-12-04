@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EditTaskForm from "./EditTaskForm";
 import useEditTask from "../hooks/useEditTask";
+import "./styles/tasklist.css"
 
 const TaskList = ({ taskList, onDelete }) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
@@ -32,12 +33,29 @@ const TaskList = ({ taskList, onDelete }) => {
     setEditingTaskId(null);
   };
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const readableDate = (dateString) => {
+    const options = { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit'
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
-    <div>
+    <>
       {currentTaskList.map((task) => (
         <div
           key={task._id}
-          style={{ border: "1px solid black", height: 300, margin: 10 }}
+          className="task-card-container"
         >
           {editingTaskId === task._id ? (
             <>
@@ -52,24 +70,28 @@ const TaskList = ({ taskList, onDelete }) => {
               </div>
             </>
           ) : (
-            <>
-              <p>{task.title}</p>
-              <p>{task.description}</p>
-              <p>{task.status}</p>
+            <div>
+
+          <span className="task-list-buttons">
+            <button onClick={() => handleEditClick(task)}><i class="fa-solid fa-pen-to-square"></i></button>
+            <button onClick={() => onDelete(task._id)}><i class="fa-solid fa-trash"></i></button>          
+           </span>
+
+              <p className="task-card-status"><span>Status:</span> {task.status}</p>
+              <p><span>Title:</span> {task.title}</p>
+              <p>Description: {task.description}</p>
               <p>
-                {task.datestart} - {task.dateend}
+                Started: {formatDate(task.datestart)}
               </p>
-              <p>{task.createdAt}</p>
+              <p>Finish at: {formatDate(task.dateend)}</p>
               <p>
                 Assigned to: {task.user?.firstname} {task.user?.lastname}
               </p>
-              <button onClick={() => handleEditClick(task)}>Edit</button>
-              <button onClick={() => onDelete(task._id)}>Delete</button>
-            </>
+            </div>
           )}
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

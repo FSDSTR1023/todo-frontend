@@ -1,0 +1,32 @@
+.task-card-container{
+    min-height: 200px;
+    width: 300px;
+    margin: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: 1px 3px 8px #d7d5d5;
+    padding: 20px;
+    text-align: left;
+}
+.task-card-status{
+    text-align: center;
+    border: 1px solid aquamarine;
+    border-radius: 10px;
+    max-width: 219px;
+    margin: 0 auto;
+    font-weight: 300;
+    margin-top: 17px;
+}
+.task-list-buttons{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.task-list-buttons button {
+    color: #5db799;
+}
+.task-list-button button:hover{
+    color: white;
+}

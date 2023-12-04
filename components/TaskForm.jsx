@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import usePostTask from "../hooks/usePostTask";
 import "./styles/taskform.css"
 
-const TaskForm = ({ onTaskCreated }) => {
+const TaskForm = ({ onTaskCreated, userList }) => {
   const [postTasks, setPostTask] = useState({
     title: "",
     description: "",
@@ -24,7 +24,14 @@ const TaskForm = ({ onTaskCreated }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await postTask(postTasks);
+    
+    const taskData = {
+      ...postTasks,
+      user: postTasks.user,
+    }
+
+    await postTask(taskData);
+
     setPostTask({
       title: "",
       description: "",
@@ -37,10 +44,26 @@ const TaskForm = ({ onTaskCreated }) => {
       onTaskCreated();
     }
   };
+  
   return (
     <div className="form-container">
     <h2>Create Task</h2>
     <form  className="form-main" onSubmit={handleSubmit}>
+
+    <select
+          name="user"
+          value={postTasks.user}
+          onChange={handleOnChange}
+          required
+        >
+         <option value="">Select a User</option>
+        {userList.map((user) => (
+          <option key={user._id} value={user._id}>
+            {user.firstname} {user.lastname}
+          </option>
+        ))}
+        </select>
+
       <input
         type="text"
         name="title"

@@ -1,16 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 
-const usePostTask = () => {
+const usePostUsers = () => {
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState(null);
 
-  const postTask = async (task, onSuccess) => {
-    console.log("Posting task:", task); // Add this line to log the task data
+  const postUser = async (user, onSuccess) => {
     setIsPosting(true);
     setError(null);
     try {
-      await axios.post("http://localhost:3001/tasks", task);
+      await axios.post("http://localhost:3001/users", user);
       if (onSuccess) onSuccess();
     } catch (err) {
       setError(err);
@@ -19,7 +18,7 @@ const usePostTask = () => {
     }
   };
 
-  return { postTask, isPosting, error };
+  return { postUser, isPosting, error };
 };
 
-export default usePostTask;
+export default usePostUsers;

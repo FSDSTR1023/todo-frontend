@@ -3,13 +3,17 @@ import EditTaskForm from "./EditTaskForm";
 import useEditTask from "../hooks/useEditTask";
 import "./styles/tasklist.css"
 
-const TaskList = ({ taskList, onDelete }) => {
+const TaskList = ({ taskList, userList, onDelete }) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [currentTaskList, setCurrentTaskList] = useState(taskList);
 
   useEffect(() => {
     setCurrentTaskList(taskList);
   }, [taskList]);
+
+  useEffect(() => {
+    setCurrentTaskList(userList);
+  }, [userList]);
 
   const handleEditClick = (task) => {
     setEditingTaskId(task._id);
@@ -59,7 +63,19 @@ const filteredTaskList = filterStatus
 
 
   return (
-<>
+    <>
+  {/* <div>
+          <div className="user-list-container">
+        <h2>Users</h2>
+        {userList.map((user) => (
+          <div key={user._id} className="user-card-container">
+            <p><b>Name:</b> {user.firstname} {user.lastname}</p>
+            <p><b>Email:</b> {user.email}</p>
+          </div>
+        ))}
+      </div>
+  </div> */}
+
     <div className="filter-container">
       <h2>Filter tasks by status</h2>
       <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
@@ -92,8 +108,8 @@ const filteredTaskList = filterStatus
             <div>
 
           <span className="task-list-buttons">
-            <button onClick={() => handleEditClick(task)}><i class="fa-solid fa-pen-to-square"></i></button>
-            <button onClick={() => onDelete(task._id)}><i class="fa-solid fa-trash"></i></button>          
+            <button onClick={() => handleEditClick(task)}><i className="fa-solid fa-pen-to-square"></i></button>
+            <button onClick={() => onDelete(task._id)}><i className="fa-solid fa-trash"></i></button>          
            </span>
 
               <p className={getStatusClassName(task)}><b>Status:</b> {task.status}</p>
@@ -104,7 +120,7 @@ const filteredTaskList = filterStatus
               </p>
               <p><b>End Date:</b> {formatDate(task.dateend)}</p>
               <p>
-              <b>Assigned to:</b> {task.user?.firstname} {task.user?.lastname}
+              <b>Assigned to:</b> {task.user?.firstname}
               </p>
             </div>
           )}

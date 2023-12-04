@@ -78,6 +78,7 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
           <option value="COMPLETED">COMPLETED</option>
         </select>
 
+
 <span className="edit-form-buttons">       
    <button type="submit">Guardar</button>
         <button type="button" onClick={onCancel}>

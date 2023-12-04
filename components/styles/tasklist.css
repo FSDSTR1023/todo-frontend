@@ -1,6 +1,11 @@
+.tasks-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .task-card-container{
     min-height: 200px;
-    width: 300px;
+    width: 270px;
     margin: 10px;
     border: 1px solid #e5e7eb;
     border-radius: 4px;
@@ -11,13 +16,44 @@
 }
 .task-card-status{
     text-align: center;
-    border: 1px solid aquamarine;
+    background: aquamarine;
     border-radius: 10px;
     max-width: 219px;
     margin: 0 auto;
     font-weight: 300;
     margin-top: 17px;
 }
+
+.status-pending {
+    text-align: center;
+    background: rgb(255, 236, 127);
+    border-radius: 10px;
+    max-width: 219px;
+    margin: 0 auto;
+    font-weight: 300;
+    margin-top: 17px;
+}
+
+.status-in-progress {
+    text-align: center;
+    background: rgb(127, 255, 253);
+    border-radius: 10px;
+    max-width: 219px;
+    margin: 0 auto;
+    font-weight: 300;
+    margin-top: 17px;
+}
+
+.status-completed {
+    text-align: center;
+    background: aquamarine;
+    border-radius: 10px;
+    max-width: 219px;
+    margin: 0 auto;
+    font-weight: 300;
+    margin-top: 17px;
+}
+
 .task-list-buttons{
     display: flex;
     justify-content: space-between;
@@ -27,6 +63,6 @@
 .task-list-buttons button {
     color: #5db799;
 }
-.task-list-button button:hover{
+.task-list-buttons button:hover{
     color: white;
 }

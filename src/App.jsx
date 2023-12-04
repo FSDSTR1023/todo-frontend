@@ -21,12 +21,17 @@ function App() {
   };
 
   return (
-    <>
-      <h1>Form</h1>
+    <div className="main-container">
+      <div className="main-form-container">
+        <h1>Form</h1>
       <TaskForm onTaskCreated={handleTaskCreated} />
+      </div>
+
+      <div className="main-task-container">
       <h1>Tasks</h1>
       <TaskList taskList={tasks} onDelete={handleTaskDeleted} />
-    </>
+      </div>
+    </div>
   );
 }
 

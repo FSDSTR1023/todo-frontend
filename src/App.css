@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.main-container{
+  width: 100%;
+  display: flex;
+}
+
+.main-form-container{
+  width:30%;
+  margin: 21px;
+}
+.main-task-container{
+  width:60%;
+  margin: 9px;
+}

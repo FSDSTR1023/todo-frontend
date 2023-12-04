@@ -38,20 +38,23 @@ const TaskList = ({ taskList, onDelete }) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const readableDate = (dateString) => {
-    const options = { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      second: '2-digit'
-    };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
+
+const getStatusClassName = (task) => {
+  if (task.status === "PENDING") {
+    return "status-pending";
+  } else if (task.status === "IN PROGRESS") {
+    return "status-in-progress";
+  } else if (task.status === "COMPLETED") {
+    return "status-completed";
+  } else {
+    return "task-card-status"; 
+  }
+};
+
+
 
   return (
-    <>
+    <div className="tasks-container">
       {currentTaskList.map((task) => (
         <div
           key={task._id}
@@ -77,21 +80,21 @@ const TaskList = ({ taskList, onDelete }) => {
             <button onClick={() => onDelete(task._id)}><i class="fa-solid fa-trash"></i></button>          
            </span>
 
-              <p className="task-card-status"><span>Status:</span> {task.status}</p>
-              <p><span>Title:</span> {task.title}</p>
-              <p>Description: {task.description}</p>
+              <p className={getStatusClassName(task)}><b>Status:</b> {task.status}</p>
+              <p><b>Title:</b> {task.title}</p>
+              <p><b>Description:</b> {task.description}</p>
               <p>
-                Started: {formatDate(task.datestart)}
+              <b>Start Date:</b> {formatDate(task.datestart)}
               </p>
-              <p>Finish at: {formatDate(task.dateend)}</p>
+              <p><b>End Date:</b> {formatDate(task.dateend)}</p>
               <p>
-                Assigned to: {task.user?.firstname} {task.user?.lastname}
+              <b>Assigned to:</b> {task.user?.firstname} {task.user?.lastname}
               </p>
             </div>
           )}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

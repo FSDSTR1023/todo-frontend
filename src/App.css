@@ -1,0 +1,67 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  background: #fafafa;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.main-container{
+  width: 100%;
+  display: flex;
+  margin: 10px;
+}
+
+.main-form-container{
+  width: 25%;
+  margin: 21px;
+}
+.main-task-container{
+  width: 69%;
+  margin: 9px;
+}
+
+
+@media screen and (max-width: 800px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px;
+  }
+  .main-form-container{
+    width: 100%;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  .form-container{
+    margin-top:20px;
+    width: 100%;
+  }
+  .main-task-container{
+    width: 100%;
+  }
+}

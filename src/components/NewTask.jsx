@@ -9,6 +9,7 @@ const NewTask = () => {
     title: '',
     description: '',
     status: 'incompleted',
+    user: '',
     datestart: '',
     dateend: '',
     deletedAt: undefined

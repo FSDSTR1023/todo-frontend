@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import NewTask from './components/NewTask';
 import AllTaskList from './components/TaskList';
+import SignUp from './components/SignUp';
+import LogIn from './components/LogIn';
 
 function App() {
   return (
@@ -12,9 +14,12 @@ function App() {
           <Navbar />
         </header>
         <main>
+          < br/>
           <Routes>
             <Route path="/tasks" element={<AllTaskList />} />
             <Route path="/newtask" element={<NewTask />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />
           </Routes>
         </main>
       </div>

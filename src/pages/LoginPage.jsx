@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { CustomInput } from '../components/CustomInput'
 import { loginUser } from '../api/user'
 
-export function LoginPage () {
+export function LoginPage ({ setUser }) {
   const [error, setError] = useState(null)
   const navigate = useNavigate()
 
@@ -13,8 +13,11 @@ export function LoginPage () {
     await loginUser({ username: username.value, password: password.value })
       .then((json) => {
         console.log(json)
-        if (json.token) {
-          window.localStorage.setItem('token', json.token)
+        console.log(json)
+        if (json._id) {
+          window.localStorage.setItem('token', json._id)
+          setUser(json)
+
           navigate('/tasks')
         } else {
           setError(json.error)

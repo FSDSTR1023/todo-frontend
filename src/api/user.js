@@ -20,8 +20,10 @@ export const loginUser = async ({ username, password }) => {
     throw new Error(e, 'Error getting user')
   }
 }
-export const registerUser = async ({ username, password, email }) => {
+export const registerUser = async ({ firstName, lastName, username, password, email }) => {
   const data = {
+    firstName,
+    lastName,
     username,
     password,
     email
@@ -35,6 +37,15 @@ export const registerUser = async ({ username, password, email }) => {
       },
       body: JSON.stringify(data)
     })
+    const resData = await response.json()
+    return resData
+  } catch (e) {
+    throw new Error(e, 'Error creating user')
+  }
+}
+export const validateUser = async ({ token }) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/${token}`)
     const resData = await response.json()
     return resData
   } catch (e) {

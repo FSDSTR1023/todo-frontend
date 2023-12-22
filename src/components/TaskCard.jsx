@@ -26,7 +26,7 @@ const TaskCard = ({ task, load, setLoad, setIdTask }) => {
       <div className='flex flex-row justify-between'>
         <div className='flex p-2 gap-2 '>
           <button onClick={()=> setIdTask(task._id)}>
-            <Link to={`/editTask/${task._id}`}>
+            <Link to={`/editTask`}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'

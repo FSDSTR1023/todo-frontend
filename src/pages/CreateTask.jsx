@@ -45,6 +45,7 @@ const CreateTask = ({ user, idTask }) => {
           'dateEnd',
           dayjs(fectchedTask.data.dateEnd).format('YYYY-MM-DD')
         );
+        idTask='';
       }
     }
     fetchTask();

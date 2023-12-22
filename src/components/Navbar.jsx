@@ -10,7 +10,7 @@ const Navbar = ({setUser, isAuthenticated, setIsAuthenticated}) => {
     }
 
     return (
-        <nav className="flex font-mono p-1 text-lg text-gray-500 bg-slate-300">
+        <nav className="mx-auto flex justify-between font-mono ps-5 pe-5 p-1 text-lg text-gray-500 bg-slate-300 w-screen">
             <div className="flex text-lg text-gray-500 bg-slate-300 justify-start w-2/4">
                 <ul className='flex flex-row items-center text-center w-full justify-start gap-8 mr-4'>
                     <li>
@@ -18,7 +18,7 @@ const Navbar = ({setUser, isAuthenticated, setIsAuthenticated}) => {
                     </li>
                 </ul>
             </div>
-            <div className="flex text-lg text-gray-500 bg-slate-300 justify-end">
+            <div className="flex text-lg text-gray-500 bg-slate-300 justify-end items-rigth">
                 <ul className='flex flex-row items-center text-center w-full justify-end gap-8 mr-4'>
                     {isAuthenticated ? (
                         <>
@@ -26,7 +26,7 @@ const Navbar = ({setUser, isAuthenticated, setIsAuthenticated}) => {
                                 <Link to='/tasks'>Task</Link>
                             </li>
                             <li>
-                                <Link to='/addTask'>Add task</Link>
+                                <Link to='/addTask'>Create task</Link>
                             </li>
                             <li>
                                 <Link to='/' onClick={logOut}>Logout</Link>

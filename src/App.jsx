@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" element={<LoginPage setUser={setUser} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/addTask" element={<CreateTask user={user} />} />
         <Route path="/tasks" element={<TaskPage setIdTask={setIdTask} />} />
-        <Route path="/editTask/:id" element={<CreateTask user={user} idTask={idTask} />} />
+        <Route path="/editTask" element={<CreateTask user={user} idTask={idTask} />} />
       </Routes>
     </Router>
   )

@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import { registerRequest } from '../api/user';
+import { signIn } from '../api/user';
 
 
 const RegisterPage = ({setUser, isAuthenticated, setIsAuthenticated}) => {
@@ -10,10 +10,10 @@ const RegisterPage = ({setUser, isAuthenticated, setIsAuthenticated}) => {
   const {register, handleSubmit, formState: { errors }} = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = handleSubmit(async (data) => {
+  const registerUser = handleSubmit(async (data) => {
     try {
-      const response = await registerRequest(data);
-      setUser(response.data.user);
+      const response = await signIn(data);
+      setUser(response.data);
       setIsAuthenticated(true);
       console.log(response);
     } catch (error) {
@@ -37,7 +37,7 @@ const RegisterPage = ({setUser, isAuthenticated, setIsAuthenticated}) => {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' onSubmit={onSubmit}>
+          <form className='space-y-6' onSubmit={registerUser}>
             <div>
               <label
                 htmlFor='firstname'

@@ -2,30 +2,31 @@
 import { Link } from 'react-router-dom';
 import { deleteTask, editTask } from '../api/task';
 
-const TaskCard = ({ task, load, setLoad }) => {
-  const handleClick = async (id)=> {
-    await deleteTask (id);
-    setLoad(!load);
-  };
-  const handleStatus = (id, status, task) =>{
-    
-    const newTask ={
+const TaskCard = ({ task, load, setLoad, setIdTask }) => {
+  const changeStatus = (id, status, task) =>{
+    const updatedTask ={
       status: status,
       user: task.user,
     };
-   
 
-    editTask (id, newTask);
+    editTask (id, updatedTask);
     setLoad(!load);
   };
+  
+  const deleteProcess = async (id)=> {
+    await deleteTask (id);
+    setLoad(!load);
+  };
+
+
   return (
     <div
       className='h-96 max-w-sm p-6 bg-white border
      border-gray-200 rounded-lg w-80 box-content '>
       <div className='flex flex-row justify-between'>
         <div className='flex p-2 gap-2 '>
-          <button>
-            <Link to={`/add-task/${task._id}`}>
+          <button onClick={()=> setIdTask(task._id)}>
+            <Link to={`/editTask/${task._id}`}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -41,7 +42,7 @@ const TaskCard = ({ task, load, setLoad }) => {
               </svg>
             </Link>
           </button>
-          <button onClick={()=> handleClick(task._id)}>
+          <button onClick={()=> deleteProcess(task._id)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -80,17 +81,17 @@ const TaskCard = ({ task, load, setLoad }) => {
         {task.description}
       </p>
       <div className='flex p-2 gap-2 flex-col'>
-        <button onClick={()=> handleStatus(task._id, 'inProgress', task)}
+        <button onClick={()=> changeStatus(task._id, 'IN_PROGRESS', task)}
           type='button'
-          value='inPogress'
+          value='IN_PROGRESS'
           className='rounded bg-white px-2 py-1 text-xs font-semibold
            text-gray-900 shadow-sm ring-1 ring-inset ring-indigo-600 hover:bg-indigo-500 hover:text-white'>
           Set in progress
         </button>
 
-        <button onClick={()=> handleStatus(task._id, 'completed', task)}
+        <button onClick={()=> changeStatus(task._id, 'COMPLETED', task)}
           type='button'
-          value='completed'
+          value='COMPLETED'
           className='rounded bg-white px-2 py-1 text-xs font-semibold
            text-gray-900 shadow-sm ring-1 ring-inset ring-indigo-600 hover:bg-indigo-500 hover:text-white'>
           Set Completed

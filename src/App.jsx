@@ -11,7 +11,7 @@ import CreateTask from './pages/CreateTask';
 function App() {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [idTask, setIdTask] = useState('');
 
 
   return (
@@ -21,8 +21,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage setUser={setUser} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/login" element={<LoginPage setUser={setUser} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
-        <Route path="/addTask" element={<CreateTask user={user} isAuthenticated={isAuthenticated} />} />
-        <Route path="/tasks" element={<TaskPage />} />
+        <Route path="/addTask" element={<CreateTask user={user} />} />
+        <Route path="/tasks" element={<TaskPage setIdTask={setIdTask} />} />
+        <Route path="/editTask/:id" element={<CreateTask user={user} idTask={idTask} />} />
       </Routes>
     </Router>
   )

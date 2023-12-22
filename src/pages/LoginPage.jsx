@@ -15,12 +15,13 @@ const LoginPage = ({ isAuthenticated, setIsAuthenticated, setUser }) => {
 
   const navigate = useNavigate();
 
-  const onSubmit = handleSubmit(async (data) => {
+  const loadUser = handleSubmit(async (user) => {
     try {
-      const response = await logIn(data);
+      console.log('User: ',user);
+      const response = await logIn(user);
+      console.log('Response: ', response);
       setUser(response.data);
       setIsAuthenticated(true);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +45,7 @@ const LoginPage = ({ isAuthenticated, setIsAuthenticated, setUser }) => {
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
           <form
             className='space-y-6'
-            onSubmit={onSubmit}>
+            onSubmit={loadUser}>
             <div>
               <label
                 htmlFor='email'

@@ -1,32 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import { useEffect } from 'react';
 import { getTaskById, editTask, createNewTask } from '../api/task';
 
-const CreateTask = ({ user }) => {
+const CreateTask = ({ user, idTask }) => {
   console.log(user, 'user');
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setValues,
+    setValue,
   } = useForm();
   const navigate = useNavigate();
-  const params = useParams();
 
   const onSubmit = handleSubmit((data) => {
-    if (params.id) {
-      editTask(params.id, data);
+    if (idTask) {
+      editTask(idTask, data);
     } else {
       createNewTask({
         ...data,
         user: user._id,
-        dateStart: dayjs(data.dateStart).format(),
-        dateEnd: dayjs(data.dateEnd).format(),
+        datestart: dayjs(data.datestart).format(),
+        dateend: dayjs(data.dateend).format(),
       });
     }
     navigate('/tasks');
@@ -34,15 +33,15 @@ const CreateTask = ({ user }) => {
 
   useEffect(() => {
     async function fetchTask() {
-      if (params.id) {
-        const fectchedTask = await getTaskById(params.id);
-        setValues('title', fectchedTask.data.title);
-        setValues('description', fectchedTask.data.description);
-        setValues(
+      if (idTask) {
+        const fectchedTask = await getTaskById(idTask);
+        setValue('title', fectchedTask.data.title);
+        setValue('description', fectchedTask.data.description);
+        setValue(
           'dateStart',
           dayjs(fectchedTask.data.dateStart).format('YYYY-MM-DD')
         );
-        setValues(
+        setValue(
           'dateEnd',
           dayjs(fectchedTask.data.dateEnd).format('YYYY-MM-DD')
         );
@@ -55,7 +54,7 @@ const CreateTask = ({ user }) => {
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
           <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
-            {params.id ? 'Edit Task' : 'Create Task'}
+            {idTask ? 'Edit Task' : 'Create Task'}
           </h2>
         </div>
 
@@ -104,24 +103,21 @@ const CreateTask = ({ user }) => {
                   defaultValue={''}
                 />
               </div>
-              <p className='mt-3 text-sm leading-6 text-gray-600'>
-                Descrition of your task
-              </p>
             </div>
             {errors.description && (
               <span className='text-red-500'>This field is required</span>
             )}
             <div>
               <label
-                htmlFor='dateStart'
+                htmlFor='datestart'
                 className='block text-sm font-medium leading-6 text-gray-900'>
                 Date Start
               </label>
               <div className='mt-2'>
                 <input
-                  {...register('dateStart', { required: true })}
-                  id='dateStart'
-                  name='dateStart'
+                  {...register('datestart', { required: true })}
+                  id='datestart'
+                  name='datestart'
                   type='date'
                   required
                   className='block w-full rounded-md border-0 
@@ -138,15 +134,15 @@ const CreateTask = ({ user }) => {
             </div>
             <div>
               <label
-                htmlFor='dateEnd'
+                htmlFor='dateend'
                 className='block text-sm font-medium leading-6 text-gray-900'>
                 Date End
               </label>
               <div className='mt-2'>
                 <input
-                  {...register('dateEnd', { required: true })}
-                  id='dateEnd'
-                  name='dateEnd'
+                  {...register('dateend', { required: true })}
+                  id='dateend'
+                  name='dateend'
                   type='date'
                   required
                   className='block w-full rounded-md border-0 

@@ -24,7 +24,7 @@ const TaskPage = ({setIdTask}) => {
   
 
   return (
-    <div className='flex flex-wrap gap-4 m-2 items-center justify-between p-10'>
+    <div className='flex flex-wrap gap-4 items-center justify-between p-10 bg-sky-200'>
       {tasks.map((task) => { return(<TaskCard task={task} key={task._id} load={load} setLoad={setLoad} setIdTask={setIdTask} />); })}
     </div>
     

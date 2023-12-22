@@ -10,15 +10,15 @@ const Navbar = ({setUser, isAuthenticated, setIsAuthenticated}) => {
     }
 
     return (
-        <nav className="mx-auto flex justify-between font-mono ps-5 pe-5 p-1 text-lg text-gray-500 bg-slate-300 w-screen">
-            <div className="flex text-lg text-gray-500 bg-slate-300 justify-start w-2/4">
+        <nav className="mx-auto flex justify-between font-mono ps-5 pe-5 p-1 text-lg text-neutral-950 bg-blue-500 w-screen">
+            <div className="flex text-lg bg-blue-500 justify-start w-2/4">
                 <ul className='flex flex-row items-center text-center w-full justify-start gap-8 mr-4'>
                     <li>
                         <Link to='/'>Home</Link>
                     </li>
                 </ul>
             </div>
-            <div className="flex text-lg text-gray-500 bg-slate-300 justify-end items-rigth">
+            <div className="flex text-lg bg-blue-500 justify-end items-rigth">
                 <ul className='flex flex-row items-center text-center w-full justify-end gap-8 mr-4'>
                     {isAuthenticated ? (
                         <>

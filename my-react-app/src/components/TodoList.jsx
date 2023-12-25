@@ -1,15 +1,16 @@
+// TodoList.jsx
 import React, { useState, useEffect } from 'react';
-import TaskCard from './TaskCard'; // Ensure correct import path
-import { fetchTodos } from '../utils/Api'; // Ensure correct import path
+import TaskCard from './TaskCard';
+import { fetchTodos } from '../utils/Api';
 
-function TodoList() {
-  const [todos, setTodos] = useState([]);
+function TodoList({ todos, onUpdateTodo, onDeleteTodo }) {
+  const [stateTodos, setStateTodos] = useState(todos);
 
   useEffect(() => {
     const getTodos = async () => {
       try {
         const data = await fetchTodos();
-        setTodos(data);
+        setStateTodos(data);
       } catch (error) {
         console.error('Failed to fetch tasks:', error);
       }
@@ -19,22 +20,22 @@ function TodoList() {
   }, []);
 
   const handleTaskUpdate = (updatedTask) => {
-    setTodos(todos.map(task => task._id === updatedTask._id ? updatedTask : task));
+    onUpdateTodo(updatedTask);
   };
 
   const handleTaskDelete = (taskId) => {
-    setTodos(todos.filter(task => task._id !== taskId));
+    onDeleteTodo(taskId);
   };
 
   return (
     <div className="todo-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {todos.length > 0 ? (
-        todos.map((todo) => (
-          <TaskCard 
-            key={todo._id} 
-            task={todo} 
-            onTaskUpdate={handleTaskUpdate} 
-            onTaskDelete={handleTaskDelete} 
+      {stateTodos.length > 0 ? (
+        stateTodos.map((todo) => (
+          <TaskCard
+            key={todo._id}
+            task={todo}
+            onUpdateTodo={handleTaskUpdate}
+            onDeleteTodo={handleTaskDelete}
           />
         ))
       ) : (

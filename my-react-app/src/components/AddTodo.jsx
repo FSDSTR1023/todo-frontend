@@ -15,7 +15,7 @@ function AddTodo({ onAddTodo }) {
     if (inputValue.trim() !== '') {
       onAddTodo(inputValue);
       setInputValue('');
-      navigate('/'); // Navigate back to the home page to see the list
+      navigate('/');
     }
   };
 
@@ -24,6 +24,7 @@ function AddTodo({ onAddTodo }) {
       <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
+          id="todoInput" // Add the id attribute here
           value={inputValue}
           onChange={handleInputChange}
           className="input"

@@ -6,8 +6,6 @@ import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import { fetchTodos, createTask, updateTask, deleteTask } from './utils/Api';
 
-
-
 function App() {
   const [todos, setTodos] = useState([]);
 
@@ -62,11 +60,14 @@ function App() {
           <Route
             path="/"
             element={
-              <TodoList
-                todos={todos}
-                onUpdateTodo={onUpdateTodo}
-                onDeleteTodo={onDeleteTodo}
-              />
+              <>
+                <AddTodo onAddTodo={onAddTodo} />
+                <TodoList
+                  todos={todos}
+                  onUpdateTodo={onUpdateTodo}
+                  onDeleteTodo={onDeleteTodo}
+                />
+              </>
             }
           />
         </Routes>

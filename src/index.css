@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+}
+body{
+  background-image: url(./imagen/fondocirculos2.jpg);
+  /*background-image: linear-gradient(to top, rgb(229, 231, 235), rgb(156, 163, 175), rgb(75, 85, 99));*/
+  /*background-repeat: no-repeat;*/
+  overflow: inherit;
+  height: 100vh;
+  background-size: 100%;
+ 
+}

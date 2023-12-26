@@ -6,10 +6,10 @@ import axios from 'axios';
 export const createTask = async (taskData) => {
   try {
     const response = await axios.post('http://localhost:3000/tasks', taskData);
-    return response.data;
+    return response.data; // Assuming the response data is the created task
   } catch (error) {
     console.error('Error creating task:', error);
-    return null; // Return null or appropriate error handling
+    return null; // Return null in case of error
   }
 };
 

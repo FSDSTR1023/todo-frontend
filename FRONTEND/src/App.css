@@ -1,0 +1,115 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  margin:auto;
+  max-height: 80vh;
+  max-width: 600px;
+  padding: 0 1rem;
+}
+
+h1{
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.top{
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+input{
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  padding: 0.5rem;
+  width: 400px;
+}
+
+.add{
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+}
+
+.todo{
+  background-color: #4c4c4c;
+  border-radius: 5px;
+  color: #fff;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.icons{
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon{
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.generalTodo{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.size{
+  width: 40%;
+}
+
+.sizeg{
+  font-weight: 100;
+  margin-bottom: 1.5rem;
+  width: 25rem;
+}
+
+.title{
+  margin-bottom: 1rem;
+}
+
+.sectguardargeneral{
+  display: flex;
+  flex-direction: column;
+}
+
+.tituloAgregar{
+  font-size: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.dates{
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.dflex{
+  display: flex;
+  margin-bottom: 1rem;
+  margin-right: 50px;
+  width: 100%;
+}
+
+.btnguardar{
+  display: flex;
+  justify-self:flex-end;
+}
+
+.lbls{
+  font-weight: bold;
+}
